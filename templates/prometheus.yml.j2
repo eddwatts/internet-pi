@@ -13,14 +13,14 @@ scrape_configs:
   - job_name: 'prometheus'
     scrape_interval: 5s
     static_configs:
-      - targets: ['127.0.0.1:9090']
+      - targets: ['10.1.0.101:9090']
 
   - job_name: 'speedtest'
     metrics_path: /metrics
     scrape_interval: {{ monitoring_speedtest_interval }}
     scrape_timeout: 60s  # running speedtest needs time to complete
     static_configs:
-      - targets: ['127.0.0.1:9798']
+      - targets: ['10.1.0.101:9798']
 
 {% if shelly_plug_enable %}
   - job_name: 'shelly-plug'
@@ -67,8 +67,8 @@ scrape_configs:
       - source_labels: [instance]
         target_label: __param_target
       - target_label: __address__
-        replacement: 127.0.0.1:9115  # The blackbox exporter's real hostname:port.
+        replacement: 10.1.0.101:9115  # The blackbox exporter's real hostname:port.
 
   - job_name: 'nodeexp'
     static_configs:
-      - targets: ['127.0.0.1:9100']
+      - targets: ['10.1.0.101:9100']
