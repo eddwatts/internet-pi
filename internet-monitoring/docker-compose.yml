@@ -34,6 +34,7 @@ services:
     image: grafana/grafana
     restart: always
     volumes:
+      - ./grafana/grafana.ini:/etc/grafana/grafana.ini    
       - grafana_data:/var/lib/grafana
       - ./grafana/provisioning/:/etc/grafana/provisioning/
     depends_on:
@@ -68,6 +69,8 @@ services:
     ports:
       - 9798:9798
     image: miguelndecarvalho/speedtest-exporter
+    environment:
+      - SPEEDTEST_SERVER=26922
     restart: always
     networks:
       - back-tier
