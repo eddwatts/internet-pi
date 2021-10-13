@@ -3,7 +3,7 @@
 config_dir: '~'
 
 # Pi-hole configuration.
-pihole_enable: true
+pihole_enable: false
 pihole_hostname: pihole
 pihole_timezone: America/Chicago
 pihole_password: "change-this-password"
@@ -11,12 +11,20 @@ pihole_password: "change-this-password"
 # Internet monitoring configuration.
 monitoring_enable: true
 monitoring_grafana_admin_password: "admin"
-monitoring_speedtest_interval: 60m
+monitoring_speedtest_interval: 10m
 monitoring_ping_interval: 5s
 monitoring_ping_hosts:  # [URL];[HUMAN_READABLE_NAME]
-  - http://www.google.com/;google.com
-  - https://github.com/;github.com
-  - https://www.apple.com/;apple.com
+    - http://www.google.com/;google.com
+    - https://www.apple.com/;apple.com
+    - https://www.facebook.com;facebook
+    - https://stmichaelsschoolportal.engagehosted.com;Engage
+    - https://stmichaelsschool.3cx.co.uk:5001/;phones
+    - http://print.stmichaelsschool.co.uk/Live_Mobile;PrintServer
+    - https://app.century.tech/login/;century.tech
+    - https://www.purplemash.com/sch/stmichaels;PurpleMash
+    - https://play.ttrockstars.com/auth/school/student/60985;TTRS
+    - https://login.mymaths.co.uk/login;MyMaths
+    - 1.1.1.3;Safe DNS
 
 # Shelly Plug configuration. (Also requires `monitoring_enable`)
 shelly_plug_enable: false
