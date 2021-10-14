@@ -20,6 +20,7 @@ monitoring_ping_hosts:  # [URL];[HUMAN_READABLE_NAME]
     - https://stmichaelsschoolportal.engagehosted.com;Engage
     - https://stmichaelsschool.3cx.co.uk:5001/;phones
     - http://print.stmichaelsschool.co.uk/Live_Mobile;PrintServer
+    - http://print.stmichaelsschool.co.uk:9191/user;Papercut    
     - https://app.century.tech/login/;century.tech
     - https://www.purplemash.com/sch/stmichaels;PurpleMash
     - https://play.ttrockstars.com/auth/school/student/60985;TTRS
