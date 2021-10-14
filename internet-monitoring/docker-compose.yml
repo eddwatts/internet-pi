@@ -37,8 +37,11 @@ services:
       - ./grafana/grafana.ini:/etc/grafana/grafana.ini    
       - grafana_data:/var/lib/grafana
       - ./grafana/provisioning/:/etc/grafana/provisioning/
+    environment:
+      - GF_INSTALL_PLUGINS=grafana-clock-panel,natel-discrete-panel,grafana-piechart-panel
     depends_on:
       - prometheus
+      - influxdb
     ports:
       - 3030:3000
     env_file:
@@ -92,3 +95,26 @@ services:
       - "^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)"
     networks:
       - back-tier
+
+  influxdb:
+    container_name: up_influxdb
+    restart: unless-stopped
+    image: influxdb:1.8
+    ports:
+      - '8086:8086'
+    volumes:
+      - ./influxdb:/var/lib/influxdb
+    environment:
+      - INFLUXDB_DB=unifi
+      - INFLUXDB_ADMIN_USER=unifi
+      - INFLUXDB_ADMIN_PASSWORD=unifi
+
+  unifi-poller:
+    container_name: up-poller
+    restart: unless-stopped
+    image: golift/unifi-poller:latest
+    depends_on:
+      - influxdb
+      - grafana
+    volumes:
+      - ./unpoller/:/config
