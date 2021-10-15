@@ -42,3 +42,12 @@ datasources:
     url: http://localhost:8087
     secureJsonData:
       password: unifi
+
+  - name: influxdb-weewx
+    type: influxdb
+    access: proxy
+    database: weewx
+    user: weewx
+    url: http://localhost:8087
+    secureJsonData:
+      password: weewx
